@@ -1,19 +1,19 @@
 const Album = require('../models/Album');
 const Event = require('../models/Event');
 
-// @desc    Créer un album pour un événement
-// @route   POST /api/albums
+
+
 exports.createAlbum = async (req, res) => {
     try {
         const { titre, eventId } = req.body;
 
-        // Vérifier si l'event existe
+        
         const event = await Event.findById(eventId);
         if (!event) {
             return res.status(404).json({ success: false, error: 'Événement non trouvé' });
         }
 
-        // Vérifier si l'user participe à l'event (Bonus sécurité)
+        
         if (!event.participants.includes(req.user.id)) {
             return res.status(403).json({ success: false, error: 'Vous devez participer à l\'événement pour créer son album' });
         }
@@ -29,18 +29,18 @@ exports.createAlbum = async (req, res) => {
     }
 };
 
-// @desc    Ajouter une photo dans l'album
-// @route   POST /api/albums/:id/photos
+
+
 exports.addPhoto = async (req, res) => {
     try {
-        const { url } = req.body; // L'utilisateur envoie l'URL de l'image
+        const { url } = req.body; 
         const album = await Album.findById(req.params.id);
 
         if (!album) {
             return res.status(404).json({ success: false, error: 'Album introuvable' });
         }
 
-        // Ajout de la photo dans le tableau
+        
         const newPhoto = {
             url,
             posteePar: req.user.id

@@ -2,9 +2,9 @@ const Event = require('../models/Event');
 const Group = require('../models/Group');
 const Thread = require('../models/Thread');
 
-// @desc    Créer un événement
-// @route   POST /api/events
-// @access  Privé
+
+
+
 exports.createEvent = async (req, res, next) => {
     try {
         const { nom, description, dateDebut, dateFin, lieu, estPublic, groupeId } = req.body;

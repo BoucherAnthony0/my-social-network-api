@@ -4,24 +4,24 @@ const connectDB = require('./config/db');
 const morgan = require('morgan');
 const cors = require('cors');
 
-// Charger la config .env
+
 dotenv.config();
 
-// Connexion à la DB
+
 connectDB();
 
 const app = express();
 
-// Middlewares (Outils intermédiaires)
-app.use(express.json()); // Permet de lire le JSON envoyé par le client
-app.use(cors());         // Autorise les requêtes externes
-app.use(morgan('dev'));  // Affiche les requêtes dans la console
 
-// Route de test
+app.use(express.json()); 
+app.use(cors());         
+app.use(morgan('dev'));  
+
+
 app.get('/', (req, res) => {
     res.send('API My Social Networks est en ligne !');
 });
-// Monter les routes
+
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/groups', require('./routes/groups'));
 app.use('/api/events', require('./routes/events'));

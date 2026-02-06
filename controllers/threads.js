@@ -1,14 +1,14 @@
 const Thread = require('../models/Thread');
 const Message = require('../models/Message');
 
-// @desc    Poster un message dans un thread
-// @route   POST /api/threads/:threadId/messages
+
+
 exports.postMessage = async (req, res, next) => {
     try {
         const { contenu } = req.body;
         const { threadId } = req.params;
 
-        // Vérifier si le thread existe
+        
         const thread = await Thread.findById(threadId);
         if (!thread) {
             return res.status(404).json({ success: false, error: 'Discussion introuvable' });
@@ -26,11 +26,11 @@ exports.postMessage = async (req, res, next) => {
     }
 };
 
-// @desc    Lire les messages (via ID Groupe ou ID Event)
-// @route   GET /api/threads/:contextId
+
+
 exports.getMessages = async (req, res, next) => {
     try {
-        // On cherche un thread lié soit au groupe, soit à l'event
+        
         const thread = await Thread.findOne({
             $or: [{ groupe: req.params.contextId }, { evenement: req.params.contextId }]
         });
@@ -40,8 +40,8 @@ exports.getMessages = async (req, res, next) => {
         }
 
         const messages = await Message.find({ thread: thread._id })
-            .populate('expediteur', 'nom prenom') // On récupère les noms des gens
-            .sort({ createdAt: 1 }); // Ordre chronologique
+            .populate('expediteur', 'nom prenom') 
+            .sort({ createdAt: 1 }); 
 
         res.status(200).json({
             success: true,

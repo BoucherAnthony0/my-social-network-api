@@ -26,11 +26,11 @@ const EventSchema = new mongoose.Schema({
         type: String,
         default: 'default_event.jpg'
     },
-    estPublic: { // "Choix de rendre son événement privé ou public"
+    estPublic: { 
         type: Boolean,
         default: true
     },
-    groupeLie: { // Lien optionnel vers un groupe
+    groupeLie: { 
         type: mongoose.Schema.ObjectId,
         ref: 'Group',
         required: false
@@ -39,7 +39,7 @@ const EventSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     }],
-    participants: [{ // "Un événement peut avoir une multitude de participants"
+    participants: [{ 
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     }],
@@ -48,10 +48,10 @@ const EventSchema = new mongoose.Schema({
         default: Date.now
     },
     typesBillets: [{
-        nom: { type: String, required: true }, // Ex: "VIP", "Standard"
-        prix: { type: Number, required: true }, // Ex: 50
-        quantite: { type: Number, required: true }, // Stock initial
-        vendus: { type: Number, default: 0 } // Compteur de ventes
+        nom: { type: String, required: true }, 
+        prix: { type: Number, required: true }, 
+        quantite: { type: Number, required: true }, 
+        vendus: { type: Number, default: 0 } 
     }],
     createdAt: {
         type: Date,

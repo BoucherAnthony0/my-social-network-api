@@ -6,16 +6,16 @@ const TicketSchema = new mongoose.Schema({
         ref: 'Event',
         required: true
     },
-    acheteur: { // L'utilisateur connecté qui achète
+    acheteur: { 
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: true
     },
-    typeBillet: { // Le nom du billet choisi (ex: "Pass VIP")
+    typeBillet: { 
         type: String,
         required: true
     },
-    infosAcheteur: { // Données spécifiques demandées par le cahier des charges
+    infosAcheteur: { 
         nom: { type: String, required: true },
         prenom: { type: String, required: true },
         adresse: { type: String, required: true }

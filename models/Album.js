@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Sous-schéma pour les commentaires sur une photo
+
 const CommentaireSchema = new mongoose.Schema({
     auteur: {
         type: mongoose.Schema.ObjectId,
@@ -17,9 +17,9 @@ const CommentaireSchema = new mongoose.Schema({
     }
 });
 
-// Sous-schéma pour les photos
+
 const PhotoSchema = new mongoose.Schema({
-    url: { // On stockera l'URL de l'image (ex: "http://img.com/photo1.jpg")
+    url: { 
         type: String,
         required: true
     },
@@ -32,23 +32,23 @@ const PhotoSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    commentaires: [CommentaireSchema] // "Ces photos peuvent être commentées"
+    commentaires: [CommentaireSchema] 
 });
 
-// Schéma principal de l'Album
+
 const AlbumSchema = new mongoose.Schema({
     titre: {
         type: String,
         required: [true, "L'album doit avoir un titre"],
         trim: true
     },
-    evenement: { // "Un album photo est associé à 1 événement"
+    evenement: { 
         type: mongoose.Schema.ObjectId,
         ref: 'Event',
         required: true,
-        unique: true // Un événement n'a qu'un seul album principal (simplification)
+        unique: true 
     },
-    photos: [PhotoSchema], // "Contient 0 ou plusieurs photos"
+    photos: [PhotoSchema], 
     createdAt: {
         type: Date,
         default: Date.now

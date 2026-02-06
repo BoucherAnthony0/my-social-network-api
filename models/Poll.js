@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
 const OptionSchema = new mongoose.Schema({
-    texte: { type: String, required: true }, // Ex: "Oui", "Non", "Mardi"
-    votes: [{ // Liste des utilisateurs qui ont choisi cette option
+    texte: { type: String, required: true }, 
+    votes: [{ 
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     }]
 });
 
 const QuestionSchema = new mongoose.Schema({
-    texte: { type: String, required: true }, // Ex: "Quelle date vous arrange ?"
-    options: [OptionSchema] // Les choix possibles
+    texte: { type: String, required: true }, 
+    options: [OptionSchema] 
 });
 
 const PollSchema = new mongoose.Schema({
@@ -24,12 +24,12 @@ const PollSchema = new mongoose.Schema({
         ref: 'Event',
         required: true
     },
-    creePar: { // L'organisateur qui a fait le sondage
+    creePar: { 
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: true
     },
-    questions: [QuestionSchema], // "Un sondage comporte 1 ou plusieurs questions"
+    questions: [QuestionSchema], 
     createdAt: {
         type: Date,
         default: Date.now

@@ -13,7 +13,7 @@ const GroupSchema = new mongoose.Schema({
     },
     icone: {
         type: String,
-        default: 'default_icon.jpg' // Placeholder pour l'instant
+        default: 'default_icon.jpg' 
     },
     photoCouverture: {
         type: String,
@@ -21,15 +21,15 @@ const GroupSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ['public', 'prive', 'secret'], // Spécification [cite: 1027]
+        enum: ['public', 'prive', 'secret'], 
         default: 'public'
     },
     permissions: {
-        autoriserPublicationMembre: { // Spécification [cite: 1028]
+        autoriserPublicationMembre: { 
             type: Boolean,
             default: true
         },
-        autoriserCreationEventMembre: { // Spécification [cite: 1029]
+        autoriserCreationEventMembre: { 
             type: Boolean,
             default: false
         }
@@ -38,11 +38,11 @@ const GroupSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Thread'
     },
-    administrateurs: [{ // Un groupe est géré par 1 ou plusieurs admins [cite: 1039]
+    administrateurs: [{ 
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     }],
-    membres: [{ // Un groupe possède 1 ou plusieurs membres [cite: 1038]
+    membres: [{ 
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     }],
