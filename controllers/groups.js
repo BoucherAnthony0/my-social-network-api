@@ -6,19 +6,19 @@ const Thread = require('../models/Thread');
 // @access  Privé (Besoin du Token)
 exports.createGroup = async (req, res, next) => {
     try {
-        // On récupère les infos envoyées
         const { nom, description, type, permissions } = req.body;
 
-        // On crée le groupe en ajoutant l'utilisateur connecté comme Admin et Membre
         const group = await Group.create({
             nom,
             description,
             type,
             permissions,
-            administrateurs: [req.user.id], // L'ID vient du middleware 'protect'
+            administrateurs: [req.user.id], 
             membres: [req.user.id]
         });
-        await Thread.create({ groupe: group._id });
+        const newThread=await Thread.create({ groupe: group._id });
+        group.thread = newThread._id;
+        await group.save();
 
         res.status(201).json({ success: true, data: group });
     } catch (err) {

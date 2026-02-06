@@ -34,6 +34,10 @@ const GroupSchema = new mongoose.Schema({
             default: false
         }
     },
+    thread: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Thread'
+    },
     administrateurs: [{ // Un groupe est géré par 1 ou plusieurs admins [cite: 1039]
         type: mongoose.Schema.ObjectId,
         ref: 'User'
